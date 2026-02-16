@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: postgres
-          image: postgis/postgis:16-3.4-alpine
+          image: parm64v8/postgres:18-alpine
           envFrom:
             - secretRef:
                 name: postgres-secret
