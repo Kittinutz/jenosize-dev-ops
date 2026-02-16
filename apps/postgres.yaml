@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: postgres
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    repoURL: git@github.com:Kittinutz/jenosize-dev-ops.git
+    targetRevision: main
+    path: repos/postgres
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+
+  syncPolicy:
+    automated:
+      prune: false
+      selfHeal: true

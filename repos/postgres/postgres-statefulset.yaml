@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: jenosize-postgres
+  labels:
+    app: postgres
+spec:
+  serviceName: 'postgres-pvc'
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+        - name: postgres
+          image: postgis/postgis:12-3.0
+          envFrom:
+            - secretRef:
+                name: postgres-secret
+          ports:
+            - containerPort: 5432
+              name: postgresdb
+          volumeMounts:
+            - name: pv-data
+              mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: pv-data
+          persistentVolumeClaim:
+            claimName: postgres-pvc
