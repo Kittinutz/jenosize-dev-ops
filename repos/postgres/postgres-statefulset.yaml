@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: postgres
-          image: parm64v8/postgres:18-alpine
+          image: arm64v8/postgres:18-alpine
           envFrom:
             - secretRef:
                 name: postgres-secret
