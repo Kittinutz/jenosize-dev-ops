@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: jenosize-backend
-          image: ghcr.io/kittinutz/jenosize-backend:latest:latest
+          image: ghcr.io/kittinutz/jenosize-backend:latest
           imagePullPolicy: Always
           resources:
             requests:
