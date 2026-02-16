@@ -1,10 +1,19 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: argocd-ingress
+  annotations:
+    cert-manager.io/cluster-issuer: 'letsencrypt'
+    nginx.ingress.kubernetes.io/backend-protocol: HTTPS
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/force-ssl-redirect: 'true'
+  name: argocd-ingress-tms-dashboard
   namespace: argocd
 spec:
   ingressClassName: nginx
+  tls:
+    - hosts:
+        - argocd-jenosize.kittinut.com
+      secretName: argocd-dashboard-tms-tls
   rules:
     - host: argocd-jenosize.kittinut.com
       http:
@@ -15,4 +24,4 @@ spec:
               service:
                 name: argocd-server
                 port:
-                  number: 80
+                  number: 443
