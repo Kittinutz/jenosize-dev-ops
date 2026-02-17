@@ -9,7 +9,7 @@ spec:
   source:
     repoURL: git@github.com:Kittinutz/jenosize-dev-ops.git
     targetRevision: main
-    path: repos/ingress-argocd
+    path: repos/ingress
 
   destination:
     server: https://kubernetes.default.svc
