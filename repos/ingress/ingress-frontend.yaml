@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: 'letsencrypt'
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/force-ssl-redirect: 'true'
+  name: jenosize-frontend-ingress
+  namespace: default
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - jenosize.kittinut.com
+      secretName: jenosize-frontend-tls
+  rules:
+    - host: jenosize.kittinut.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: jenosize-frontend
+                port:
+                  number: 3000
