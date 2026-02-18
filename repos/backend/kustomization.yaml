@@ -6,4 +6,4 @@ resources:
 namespace: default
 images:
 - name: ghcr.io/Kittinutz/jenosize-backend
-  newTag: v0.0.17
+  newTag: v0.0.19
